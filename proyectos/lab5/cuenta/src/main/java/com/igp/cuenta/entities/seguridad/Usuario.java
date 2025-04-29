@@ -1,11 +1,14 @@
-package com.igp.seguridad.entities;
+package com.igp.cuenta.entities.seguridad;
 
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
+@JsonIgnoreProperties({"roles"})
 public class Usuario {
 
     @Id
