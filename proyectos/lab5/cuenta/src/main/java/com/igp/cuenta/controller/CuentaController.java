@@ -15,6 +15,12 @@ import com.igp.cuenta.entities.Cuenta;
 import com.igp.cuenta.entities.seguridad.Usuario;
 import com.igp.cuenta.service.CuentaService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+
+@Tag(name="Cuentas", description="Controlador de peticiones REST de Cuentas")
 @RestController
 @RequestMapping("/cuentas")
 public class CuentaController {
@@ -50,6 +56,8 @@ public class CuentaController {
     }
 
     // Obtiene el usuario desde el servicio de seguridad
+    @Operation(summary="Obtiene el usuario asociado a la cuenta de bitcoins")
+    @ApiResponse(responseCode="200",description="Retorno el usuario con exito")
     @GetMapping("/{id}/usuario")
     public Usuario obtenerUsuario(@PathVariable Long id) {
         Cuenta encontrado = service.buscarPorId(id);

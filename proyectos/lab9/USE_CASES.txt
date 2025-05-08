@@ -1,0 +1,100 @@
+
+1.- Iniciar el servicio de seguridad
+    NAME:seguridad
+	PORT:8082
+    
+    USE CASE SEG-001  Obtener todos los usuarios
+    METHOD: GET
+    CALL: http://localhost:8082/usuarios
+    RESPONSE: Todas la entidades de Usuario.   	
+
+    USE CASE SEG-002  Obtener todos los roles
+    METHOD: GET
+    CALL: http://localhost:8082/roles
+    RESPONSE: Todas la entidades de Rol.   	
+     
+	 
+	USE CASE SEG-003  Asignar un rol a un usuario
+    METHOD: PUT
+    CALL: http://localhost:8082/usuarios/{userid}/roles/{rolid}
+    RESPONSE: Retorna la entidad Usuario.
+    SAMPLE: http://localhost:8082/usuarios/2/roles/1
+ 	
+	USE CASE SEG-003  Obtener los Roles de un usuario
+    METHOD: GET
+    CALL: http://localhost:8082/usuarios/{userid}/roles
+    RESPONSE: Retorna la lista de roles del usuario.
+    SAMPLE: http://localhost:8082/usuarios/2/roles
+
+2.- Iniciar el servicio tokenservice
+    NAME= tokenservice
+    PORT:8081
+	
+	USE CASE SEG-001  Obtener el token
+    METHOD: POST
+    CALL: http://localhost:8081/autenticar/login
+    RESPONSE: Token JWT.
+    SAMPLE: http://localhost:8081/autenticar/login
+	PATH: Body >> Raw >> JSON
+          {
+			  "username": "pedro",
+			  "password": "igp2025"
+		  }	
+	
+
+3.- Iniciar el servicio bitcoins	
+    NAME= bitcoins
+	PORT= 8084
+	USE CASE SEG-001  Obtener los bitcoins
+    METHOD: GET
+    CALL: http://localhost:8084/bitcoins
+    RESPONSE: todas la entidades
+	
+     
+
+4.- Iniciar el servicio cuenta
+    NAME= cuenta 
+	PORT= 8083
+    	
+    USE CASE SEG-001  Obtener las cuentas
+    METHOD: GET
+    CALL: http://localhost:8083/cuentas
+    RESPONSE: todas la entidades
+	
+	.
+	USE CASE SEG-002  Obtener el usuario de una cuenta
+    METHOD: GET
+    CALL: http://localhost:8083/cuentas/{id}/usuario
+    RESPONSE: obtiene el usuario asociado a la cuenta
+    SAMPLE= http://localhost:8083/cuentas/2/usuario		
+	
+	USE CASE SEG-003  Obtener el token mediante el id de la cuenta
+    METHOD: GET
+    CALL: http://localhost:8083/cuentas/{id}/token
+    RESPONSE: token del usuario de la cuenta
+    SAMPLE= http://localhost:8083/cuentas/2/token	
+	
+	USE CASE SEG-004  Obtener el usuario de una cuenta
+    METHOD: GET
+    CALL: http://localhost:8083/cuentas/{id}/usuario
+    RESPONSE: obtiene el usuario asociado a la cuenta
+    SAMPLE= http://localhost:8083/cuentas/2/usuario		
+	
+	USE CASE SEG-005  Obtener los bitcoins de una la cuenta
+    METHOD: GET
+    CALL:  http://localhost:8083/cuentas/{idcuenta}/bitcoins
+    RESPONSE: Bitcoins de la cuenta
+    SAMPLE=  http://localhost:8083/cuentas/1/bitcoins	
+
+
+    USE CASE SEG-006  Obtener los bitcoins de una la cuenta usando credenciales
+    METHOD: POST
+    CALL:  http://localhost:8083/cuentas/{idcuenta}/bitcoins
+    RESPONSE: Bitcoins de la cuenta
+    SAMPLE=   http://localhost:8083/cuentas/bitcoins
+    	
+    PATH: Body >> Raw >> JSON
+          {
+			  "username": "pedro",
+			  "password": "igp2025"
+		  }	

@@ -1,0 +1,8 @@
+com\igp\tokenservice\controller\AuthController.class
+com\igp\tokenservice\JwtApplication.class
+com\igp\tokenservice\config\CustomAuthManagerConfig.class
+com\igp\tokenservice\config\SecurityConfig.class
+com\igp\tokenservice\util\JwtUtil.class
+com\igp\tokenservice\model\AuthRequest.class
+com\igp\tokenservice\config\CustomAuthManagerConfig$1.class
+com\igp\tokenservice\service\MyUserDetailsService.class

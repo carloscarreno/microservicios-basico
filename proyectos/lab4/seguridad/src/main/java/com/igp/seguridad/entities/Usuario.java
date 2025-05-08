@@ -1,12 +1,18 @@
 package com.igp.seguridad.entities;
 
+import java.io.Serializable;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
-public class Usuario {
+
+public class Usuario  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +22,7 @@ public class Usuario {
     private String password;
     private String correo;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JsonManagedReference
-    @JoinTable(
-        name = "usuario_roles",
-        joinColumns = @JoinColumn(name = "usuario_id"),
-        inverseJoinColumns = @JoinColumn(name = "rol_id")
-    )
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Rol> roles;
 
     public Usuario() {}

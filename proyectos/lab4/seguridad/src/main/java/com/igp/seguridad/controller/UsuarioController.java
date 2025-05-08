@@ -1,13 +1,20 @@
 package com.igp.seguridad.controller;
 
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import com.igp.seguridad.entities.Usuario;
 import com.igp.seguridad.service.UsuarioService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import java.util.List;
 
+@Tag(name="Usuarios", description="Entidad Usuario del modelo de autenticacion")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -18,12 +25,17 @@ public class UsuarioController {
         this.service = service;
     }
 
+    @Operation(summary = "Obtiene todos los usarios registrados")
+    @ApiResponses(value={
+        @ApiResponse(responseCode="200", description="Se obtuvo la lista con exito"),
+        @ApiResponse(responseCode="500", description="Error interno en el servidor")
+    }) 
     @GetMapping
     public List<Usuario> listar() {
         return service.listar();
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public Usuario crear(@RequestBody Usuario usuario) {
         return service.guardar(usuario);
     }

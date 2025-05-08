@@ -1,0 +1,55 @@
+REQUISITOS DEL LAB 16
+============================.
+Instructor: Carlos Carreño
+Contacto: ccarrenovi@gmail.com
+
+
+REQUISITOS
+El primer requisito es tener instalado Docker en el sistema, a continuacion se muestra el
+procedimiento de instalacion en CENTOS 9.
+
+PROCEDIMIENTO DE INSTALACION DE DOCKER EN CENTOS 9
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+Paso 1: Añadir repositorio de docker
+
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf repolist -v
+
+Paso 2: Versiones de docker
+
+dnf list docker-ce --showduplicates | sort -r
+
+Paso 3: Instalar Docker
+sudo yum install docker-ce
+
+Paso 4: Habilitar docker
+sudo systemctl enable --now docker
+sudo systemctl status docker
+
+Paso 5: Docker como usuario no root
+sudo usermod -aG docker $(whoami)
+sudo usermod -aG docker linuxconfig
+
+Paso 6: Probando docker
+docker run hola-mundo
+
+Dockere Compose
+
+curl -L "https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose 
+
+chmod +x /usr/local/bin/docker-compose 
+
+docker-compose --version
+
+EJECUCION DE ELK
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Debes tener el docker-compose.yml de los componentes de la suite ELK.
+
+Desde el directorio donde se encuentra el archivo se debe ejecutar:
+
+docker-compose up
+
+ 

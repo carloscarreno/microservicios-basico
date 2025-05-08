@@ -1,9 +1,13 @@
 package com.igp.seguridad.entities;
 
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+//import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "roles")
@@ -14,10 +18,6 @@ public class Rol {
     private Long id;
 
     private String nombre;
-
-    @ManyToMany(mappedBy = "roles")
-    @JsonBackReference
-    private Set<Usuario> usuarios;
 
     public Rol() {}
 
@@ -34,7 +34,5 @@ public class Rol {
 
     public void setNombre(String nombre) { this.nombre = nombre; }
 
-    public Set<Usuario> getUsuarios() { return usuarios; }
-
-    public void setUsuarios(Set<Usuario> usuarios) { this.usuarios = usuarios; }
+    
 }
